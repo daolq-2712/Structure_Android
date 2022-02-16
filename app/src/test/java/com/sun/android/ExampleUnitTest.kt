@@ -1,4 +1,4 @@
-package com.sun.structure_android
+package com.sun.android
 
 import org.junit.Assert.*
 import org.junit.Test
