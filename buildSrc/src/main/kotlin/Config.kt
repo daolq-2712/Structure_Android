@@ -12,6 +12,12 @@ object Versions {
 
     const val lifecycle = "2.5"
     const val navigation = "2.5.3"
+    
+    const val retrofit = "2.9.0"
+    const val okHttp = "4.7.2"
+
+    const val glide = "4.11.0"
+
     const val koin = "3.4.0"
 
     const val jUnit = "4.13.2"
@@ -49,16 +55,29 @@ object Deps {
     const val material = "com.google.android.material:material:${Versions.material}"
     const val constraint_layout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
 
-    // Splash screen
-    const val splash_screen = "androidx.core:core-splashscreen:${Versions.coreSplashScreen}"
-
-    // lifecycle
-    const val lifecycle_livedata_ktx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
-    const val lifecycle_viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
-
     // navigation
+    const val navigation_fragment = "androidx.navigation:navigation-fragment:${Versions.navigation}"
+    const val navigation_ui = "androidx.navigation:navigation-ui:${Versions.navigation}"
     const val navigation_fragment_ktx = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     const val navigation_ui_ktx = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
+
+    // lifecycle
+    const val lifecycle_extension = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
+    const val lifecycle_livedata_ktx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
+    const val lifecycle_viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
+    const val lifecycle_runtime = "androidx.lifecycle:lifecycle-runtime:${Versions.lifecycle}"
+
+    //Retrofit
+    const val retrofit_runtime = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+    const val okHttp = "com.squareup.okhttp3:okhttp:${Versions.okHttp}"
+    const val retrofit_gson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
+    const val retrofit_mock = "com.squareup.retrofit2:retrofit-mock:${Versions.retrofit}"
+    const val okhttp_logging_interceptor =
+        "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp}"
+
+    // Glide
+    const val glide_runtime = "com.github.bumptech.glide:glide:${Versions.glide}"
+    const val glide_compiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
 
     // koin
     const val koin_core = "io.insert-koin:koin-core:${Versions.koin}"
