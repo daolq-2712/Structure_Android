@@ -86,10 +86,9 @@ object Deps {
     const val glide_runtime = "com.github.bumptech.glide:glide:${Versions.glide}"
     const val glide_compiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
 
-    // koin
-    const val koin_core = "io.insert-koin:koin-core:${Versions.koin}"
-    const val koin_android = "io.insert-koin:koin-android:${Versions.koin}"
-    const val koin_test = "io.insert-koin:koin-test:${Versions.koin}"
+    // Koin
+    const val koin_ext = "org.koin:koin-androidx-ext:${Versions.koin}"
+    const val koin_viewmodel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
 
     // Testing
     const val junit = "junit:junit:${Versions.jUnit}"
