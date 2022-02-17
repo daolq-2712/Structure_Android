@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     id(Plugins.android_application)
     kotlin(Plugins.kotlin_android)
@@ -117,7 +119,7 @@ project.afterEvaluate {
                     "**/*Companion*.*",
                     "**/Lambda*.*",
                     "**/*Lambda*.*",
-                    "**/*Binder*.*",
+                    "**/*Binder*.*"
                 )
 
                 //Explain to Jacoco where are you .class file java and kotlin
@@ -185,6 +187,11 @@ dependencies {
     implementation(Deps.lifecycle_livedata_ktx)
     implementation(Deps.lifecycle_viewmodel_ktx)
     implementation(Deps.lifecycle_runtime)
+
+    //Coroutine
+    implementation(Deps.coroutines_core)
+    implementation(Deps.coroutines_android)
+    testImplementation(Deps.coroutines_test)
 
     //Retrofit
     implementation(Deps.okHttp)
