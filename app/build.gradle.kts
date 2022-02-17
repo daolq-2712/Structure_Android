@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     id(Plugins.android_application)
     kotlin(Plugins.kotlin_android)
@@ -29,10 +27,12 @@ android {
             setDimension("appVariant")
             applicationIdSuffix = ".dev"
             resValue("string", "app_name", "Structure-Dev")
+            buildConfigField("String", "BASE_URL", "\"https://api.github.com/\"")
         }
         create("prd") {
             setDimension("appVariant")
             resValue("string", "app_name", "Structure")
+            buildConfigField("String", "BASE_URL", "\"https://api.github.com/\"")
             versionCode = AppConfigs.version_code_release
             versionName = AppConfigs.version_name_release
         }
@@ -198,6 +198,10 @@ dependencies {
     implementation(Deps.retrofit_runtime)
     implementation(Deps.retrofit_gson)
     implementation(Deps.okhttp_logging_interceptor)
+
+    //Koin
+    implementation(Deps.koin_ext)
+    implementation(Deps.koin_viewmodel)
 
     //Glide
     implementation(Deps.glide_runtime)

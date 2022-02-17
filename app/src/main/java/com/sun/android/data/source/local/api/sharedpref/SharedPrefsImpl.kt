@@ -4,12 +4,12 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.sun.android.data.source.local.api.SharedPrefApi
+import com.sun.android.data.source.local.api.SharedPrefsApi
 
-class SharedPrefApiImpl(context: Context, private val gson: Gson) : SharedPrefApi {
+class SharedPrefsImpl(context: Context, private val gson: Gson) : SharedPrefsApi {
 
     private val sharedPreferences by lazy {
-        context.getSharedPreferences(SharedPrefKey.PREFS_NAME, Context.MODE_PRIVATE)
+        context.getSharedPreferences(SharedPrefsKey.PREFS_NAME, Context.MODE_PRIVATE)
     }
 
     override fun registerOnSharedPreferenceChangeListener(
@@ -32,7 +32,7 @@ class SharedPrefApiImpl(context: Context, private val gson: Gson) : SharedPrefAp
             is Float -> editor.putFloat(key, data)
             is Int -> editor.putInt(key, data)
             is Long -> editor.putLong(key, data)
-            else -> editor.putString(key, gson.toJson(data))
+            else -> editor.putString(key, Gson().toJson(data))
         }
         editor.apply()
     }

@@ -2,7 +2,7 @@ package com.sun.android.data.source.local.api
 
 import android.content.SharedPreferences
 
-interface SharedPrefApi {
+interface SharedPrefsApi {
     fun <T> put(key: String, data: T)
     fun <T> get(key: String, type: Class<T>, default: T? = null): T?
     fun <T> putList(key: String, list: List<T>)
