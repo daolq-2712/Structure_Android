@@ -13,6 +13,8 @@ object Versions {
     const val lifecycle = "2.5"
     const val navigation = "2.5.3"
     
+    const val coroutines = "1.4.2"
+
     const val retrofit = "2.9.0"
     const val okHttp = "4.7.2"
 
@@ -61,17 +63,22 @@ object Deps {
     const val navigation_fragment_ktx = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     const val navigation_ui_ktx = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
 
-    // lifecycle
+    // Lifecycle
     const val lifecycle_extension = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
     const val lifecycle_livedata_ktx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
     const val lifecycle_viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
     const val lifecycle_runtime = "androidx.lifecycle:lifecycle-runtime:${Versions.lifecycle}"
 
+    // Coroutines
+    const val coroutines_core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
+    const val coroutines_android =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
+    const val coroutines_test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
+
     //Retrofit
     const val retrofit_runtime = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     const val okHttp = "com.squareup.okhttp3:okhttp:${Versions.okHttp}"
     const val retrofit_gson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
-    const val retrofit_mock = "com.squareup.retrofit2:retrofit-mock:${Versions.retrofit}"
     const val okhttp_logging_interceptor =
         "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp}"
 
