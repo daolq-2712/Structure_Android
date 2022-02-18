@@ -28,7 +28,7 @@ val NetworkModule = module {
 }
 
 fun provideOkHttpCache(app: Application): Cache {
-    val cacheSize: Long = 10 * 1024 * 1024 // 10MB
+    val cacheSize: Long = NetWorkInstant.CACHE_SIZE
     return Cache(app.cacheDir, cacheSize)
 }
 
@@ -76,4 +76,6 @@ object NetWorkInstant {
     internal const val READ_TIMEOUT = 60L
     internal const val WRITE_TIMEOUT = 30L
     internal const val CONNECT_TIMEOUT = 60L
+
+    internal const val CACHE_SIZE = 10 * 1024 * 1024L // 10MB
 }

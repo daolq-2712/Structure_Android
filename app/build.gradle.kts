@@ -1,6 +1,7 @@
 plugins {
     id(Plugins.android_application)
     kotlin(Plugins.kotlin_android)
+    id(Plugins.kotlin_parcelize)
     id(Plugins.detekt).version(Versions.detekt)
     jacoco
 }
@@ -27,12 +28,12 @@ android {
             setDimension("appVariant")
             applicationIdSuffix = ".dev"
             resValue("string", "app_name", "Structure-Dev")
-            buildConfigField("String", "BASE_URL", "\"https://api.github.com/\"")
+            buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
         }
         create("prd") {
             setDimension("appVariant")
             resValue("string", "app_name", "Structure")
-            buildConfigField("String", "BASE_URL", "\"https://api.github.com/\"")
+            buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
             versionCode = AppConfigs.version_code_release
             versionName = AppConfigs.version_name_release
         }

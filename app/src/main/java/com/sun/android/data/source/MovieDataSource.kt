@@ -15,6 +15,6 @@ interface MovieDataSource {
      * Remote
      */
     interface Remote {
-        fun getMovies(): BaseResponse<List<Movie>>
+        suspend fun getMovies(): BaseResponse<List<Movie>>
     }
 }

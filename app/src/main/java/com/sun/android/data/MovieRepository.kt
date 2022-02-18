@@ -1,5 +1,8 @@
 package com.sun.android.data
 
+import com.sun.android.data.model.Movie
+import com.sun.android.utils.DataResult
+
 interface MovieRepository {
-    fun getMovies()
+    suspend fun getMovies(): DataResult<List<Movie>>
 }
