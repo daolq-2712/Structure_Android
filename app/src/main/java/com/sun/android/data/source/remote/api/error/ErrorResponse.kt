@@ -1,6 +1,7 @@
 package com.sun.android.data.source.remote.api.error
 
 import com.google.gson.Gson
+import com.google.gson.JsonSyntaxException
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.sun.android.utils.LogUtils
@@ -50,6 +51,9 @@ data class ErrorResponse(
                         LogUtils.e(TAG, e.message.toString())
                         RetrofitException.toUnexpectedError(throwable)
                     } catch (e: ParseException) {
+                        LogUtils.e(TAG, e.message.toString())
+                        RetrofitException.toUnexpectedError(throwable)
+                    } catch (e: JsonSyntaxException) {
                         LogUtils.e(TAG, e.message.toString())
                         RetrofitException.toUnexpectedError(throwable)
                     }

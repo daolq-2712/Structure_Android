@@ -1,6 +1,7 @@
 package com.sun.android.data.source.remote.api.error
 
 import java.io.IOException
+import java.net.HttpURLConnection
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 import retrofit2.Response
@@ -62,15 +63,15 @@ class RetrofitException : RuntimeException {
     }
 
     private fun Int.getHttpErrorMessage(): String {
-        if (this in 300..308) {
+        if (this in HttpURLConnection.HTTP_MULT_CHOICE..HttpURLConnection.HTTP_USE_PROXY) {
             // Redirection
             return "It was transferred to a different URL. I'm sorry for causing you trouble"
         }
-        if (this in 400..451) {
+        if (this in HttpURLConnection.HTTP_BAD_REQUEST..HttpURLConnection.HTTP_UNSUPPORTED_TYPE) {
             // Client error
             return "An error occurred on the application side. Please try again later!"
         }
-        if (this in 500..511) {
+        if (this in HttpURLConnection.HTTP_INTERNAL_ERROR..HttpURLConnection.HTTP_VERSION) {
             // Server error
             return "A server error occurred. Please try again later!"
         }

@@ -48,6 +48,7 @@ object ClassPath {
 object Plugins {
     const val android_application = "com.android.application"
     const val kotlin_android = "android"
+    const val kotlin_parcelize = "kotlin-parcelize"
     const val detekt = "io.gitlab.arturbosch.detekt"
 }
 

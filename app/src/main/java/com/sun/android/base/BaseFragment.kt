@@ -5,9 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.viewbinding.ViewBinding
-import com.sun.android.utils.showToast
 
 typealias FragmentInflate<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
 
@@ -29,9 +27,6 @@ abstract class BaseFragment<VB : ViewBinding>(private val inflate: FragmentInfla
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.error.observe(viewLifecycleOwner, Observer {
-            view.context.showToast(it)
-        })
         initialize()
     }
 

@@ -10,7 +10,10 @@ data class BaseResponse<T>(
     @SerializedName("messages")
     @Expose
     val message: String,
-    @SerializedName("data")
+    @SerializedName("results")
     @Expose
-    var data: T
+    var data: T,
+    @SerializedName("page")
+    @Expose
+    var page: Int
 )
