@@ -3,11 +3,9 @@ package com.sun.android.ui.listmovie.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.sun.android.R
 import com.sun.android.data.model.Movie
+import com.sun.android.databinding.ItemLayoutMovieBinding
 import com.sun.android.utils.extension.loadImageCircleWithUrl
 import com.sun.android.utils.extension.notNull
 import com.sun.android.utils.recycler.OnItemRecyclerViewClickListener
@@ -18,9 +16,8 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.ViewHolder?>() {
     private var onItemClickListener: OnItemRecyclerViewClickListener<Movie>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_layout_movie, parent, false)
-        return ViewHolder(view, onItemClickListener)
+        val binding = ItemLayoutMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding, onItemClickListener)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -46,32 +43,24 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.ViewHolder?>() {
     }
 
     class ViewHolder(
-        itemView: View,
+        private val binding: ItemLayoutMovieBinding,
         private val itemClickListener: OnItemRecyclerViewClickListener<Movie>?
-    ) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
-        private var mTextViewTitle: TextView? = null
-        private var mTextViewRatting: TextView? = null
-        private var mTextViewContent: TextView? = null
-        private var mImageViewIconMovie: ImageView? = null
+    ) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
         private var movieData: Movie? = null
         private var listener: OnItemRecyclerViewClickListener<Movie>? = null
 
         init {
-            mTextViewTitle = itemView.findViewById(R.id.textViewTitle)
-            mTextViewRatting = itemView.findViewById(R.id.textViewRatting)
-            mTextViewContent = itemView.findViewById(R.id.textViewContent)
-            mImageViewIconMovie = itemView.findViewById(R.id.imageMovie)
             itemView.setOnClickListener(this)
             listener = itemClickListener
         }
 
         fun bindViewData(movie: Movie) {
             movie.let {
-                mTextViewTitle?.text = it.title
-                mTextViewRatting?.text = it.vote.toString()
-                mTextViewContent?.text = it.originalTitle
-                mImageViewIconMovie?.loadImageCircleWithUrl(it.urlImage)
+                binding.textViewTitle.text = it.title
+                binding.textViewRatting.text = it.vote.toString()
+                binding.textViewContent.text = it.originalTitle
+                binding.imageMovie.loadImageCircleWithUrl(it.urlImage)
                 movieData = it
             }
         }
