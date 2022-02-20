@@ -5,4 +5,6 @@ import com.sun.android.utils.DataResult
 
 interface MovieRepository {
     suspend fun getMovies(): DataResult<List<Movie>>
+
+    suspend fun getDetailMovies(movieId: Int): DataResult<Movie>
 }

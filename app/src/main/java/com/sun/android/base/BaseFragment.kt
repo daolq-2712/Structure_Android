@@ -22,6 +22,8 @@ abstract class BaseFragment<VB : ViewBinding>(private val inflate: FragmentInfla
 
     protected abstract fun initData()
 
+    protected abstract fun bindData()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = inflate.invoke(inflater, container, false)
         return binding.root
@@ -31,6 +33,7 @@ abstract class BaseFragment<VB : ViewBinding>(private val inflate: FragmentInfla
         super.onViewCreated(view, savedInstanceState)
         initView()
         initData()
+        bindData()
     }
 
     override fun onDestroyView() {

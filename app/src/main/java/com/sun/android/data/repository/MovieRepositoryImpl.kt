@@ -11,4 +11,8 @@ class MovieRepositoryImpl constructor(
     override suspend fun getMovies() = withResultContext {
         remote.getMovies().data
     }
+
+    override suspend fun getDetailMovies(movieId: Int) = withResultContext {
+        remote.getMovieDetail(movieId = movieId)
+    }
 }
