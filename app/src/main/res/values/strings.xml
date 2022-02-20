@@ -1,2 +1,4 @@
 <resources>
+    <string name="ratting">Ratting:</string>
+    <string name="total_reviews">Total reviews</string>
 </resources>

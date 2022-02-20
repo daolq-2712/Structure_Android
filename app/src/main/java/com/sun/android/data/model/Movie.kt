@@ -7,6 +7,9 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Movie(
+    @SerializedName("id")
+    @Expose
+    var id: Int = -1,
     @SerializedName("backdrop_path")
     @Expose
     var backDropImage: String = "",
