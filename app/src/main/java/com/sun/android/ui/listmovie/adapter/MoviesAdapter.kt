@@ -37,7 +37,7 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.ViewHolder?>() {
         onItemClickListener = onItemRecyclerViewClickListener
     }
 
-    fun updateData(movies: MutableList<Movie>?) {
+    fun updateData(movies: List<Movie>) {
         movies.notNull {
             this.movies.clear()
             this.movies.addAll(it)

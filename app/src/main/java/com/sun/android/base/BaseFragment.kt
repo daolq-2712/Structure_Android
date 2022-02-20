@@ -18,7 +18,9 @@ abstract class BaseFragment<VB : ViewBinding>(private val inflate: FragmentInfla
     val binding get() = _binding!!
     abstract val viewModel: BaseViewModel
 
-    protected abstract fun initialize()
+    protected abstract fun initView()
+
+    protected abstract fun initData()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = inflate.invoke(inflater, container, false)
@@ -27,7 +29,8 @@ abstract class BaseFragment<VB : ViewBinding>(private val inflate: FragmentInfla
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initialize()
+        initView()
+        initData()
     }
 
     override fun onDestroyView() {
