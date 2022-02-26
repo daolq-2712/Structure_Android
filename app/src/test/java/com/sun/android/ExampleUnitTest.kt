@@ -1,8 +1,7 @@
-package com.sun.structure_android
-
-import org.junit.Test
+package com.sun.android
 
 import org.junit.Assert.*
+import org.junit.Test
 
 /**
  * Example local unit test, which will execute on the development machine (host).
