@@ -6,11 +6,12 @@ import com.sun.android.data.source.remote.api.error.ErrorResponse
 import com.sun.android.utils.DataResult
 import com.sun.android.utils.livedata.SingleLiveData
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
 open class BaseViewModel : ViewModel() {
-    val isLoading = SingleLiveData<Boolean>()
-    val errorResponse = SingleLiveData<ErrorResponse?>()
+    val isLoading: MutableStateFlow<Boolean> by lazy { MutableStateFlow(false) }
+    val errorResponse: MutableStateFlow<ErrorResponse?> by lazy { MutableStateFlow(null) }
     private var loadingCount = 0
 
     protected fun <T> launchTaskSync(
@@ -39,7 +40,7 @@ open class BaseViewModel : ViewModel() {
     private fun showLoading(isShowLoading: Boolean) {
         if (!isShowLoading) return
         loadingCount++
-        if (isLoading.value != true) isLoading.value = true
+        if (!isLoading.value) isLoading.value = true
     }
 
     private fun hideLoading(isShowLoading: Boolean) {
