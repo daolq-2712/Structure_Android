@@ -22,16 +22,16 @@ android {
         versionName = AppConfigs.version_name
     }
 
-    flavorDimensions("appVariant")
+    flavorDimensions.addAll(listOf("appVariant"))
     productFlavors {
         create("dev") {
-            setDimension("appVariant")
             applicationIdSuffix = ".dev"
+            dimension = "appVariant"
             resValue("string", "app_name", "Structure-Dev")
             buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
         }
         create("prd") {
-            setDimension("appVariant")
+            dimension = "appVariant"
             resValue("string", "app_name", "Structure")
             buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
             versionCode = AppConfigs.version_code_release
@@ -51,6 +51,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11

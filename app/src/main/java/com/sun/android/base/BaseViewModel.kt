@@ -29,6 +29,9 @@ open class BaseViewModel : ViewModel() {
                     getErrorResponse()?.let { errorResponse.value = it }
                 }
             }
+            else -> {
+                /*No-op*/
+            }
         }
         hideLoading(isShowLoading)
     }
