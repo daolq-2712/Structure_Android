@@ -2,7 +2,7 @@
 echo "Running static analysis..."
 
 echo "Start running ktlint"
-./gradlew ktlintFormat ktlintCheck --daemon
+./\gradlew ktlintFormat ktlintCheck --daemon
 status1=$?
 if [[ "$status1" = 0 ]] ; then
     echo "*******************************************************"
@@ -17,7 +17,7 @@ else
 fi
 
 echo "Start running detektCheck"
-./gradlew detekt --daemon
+./\gradlew detekt --daemon
 status2=$?
 if [[ "$status2" = 0 ]] ; then
     echo "*******************************************************"
