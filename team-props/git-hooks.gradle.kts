@@ -3,11 +3,11 @@ fun isLinuxOrMacOs(): Boolean {
 }
 
 fun isLinux(): Boolean {
-    return System.getProperty("os.name").toLowerCase().contains("linux")
+    return System.getProperty("os.name").lowercase().contains("linux")
 }
 
 fun isMac(): Boolean {
-    val osName = System.getProperty("os.name").toLowerCase()
+    val osName = System.getProperty("os.name").lowercase()
     return osName.contains("mac os")
         || osName.contains("macos")
 }
