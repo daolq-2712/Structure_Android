@@ -12,6 +12,14 @@ object Versions {
 
     const val lifecycle = "2.5"
     const val navigation = "2.5.3"
+    
+    const val coroutines = "1.4.2"
+
+    const val retrofit = "2.9.0"
+    const val okHttp = "4.7.2"
+
+    const val glide = "4.11.0"
+
     const val koin = "3.4.0"
 
     const val jUnit = "4.13.2"
@@ -40,6 +48,7 @@ object ClassPath {
 object Plugins {
     const val android_application = "com.android.application"
     const val kotlin_android = "android"
+    const val kotlin_parcelize = "kotlin-parcelize"
     const val detekt = "io.gitlab.arturbosch.detekt"
 }
 
@@ -49,21 +58,38 @@ object Deps {
     const val material = "com.google.android.material:material:${Versions.material}"
     const val constraint_layout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
 
-    // Splash screen
-    const val splash_screen = "androidx.core:core-splashscreen:${Versions.coreSplashScreen}"
-
-    // lifecycle
-    const val lifecycle_livedata_ktx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
-    const val lifecycle_viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
-
     // navigation
+    const val navigation_fragment = "androidx.navigation:navigation-fragment:${Versions.navigation}"
+    const val navigation_ui = "androidx.navigation:navigation-ui:${Versions.navigation}"
     const val navigation_fragment_ktx = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     const val navigation_ui_ktx = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
 
-    // koin
-    const val koin_core = "io.insert-koin:koin-core:${Versions.koin}"
-    const val koin_android = "io.insert-koin:koin-android:${Versions.koin}"
-    const val koin_test = "io.insert-koin:koin-test:${Versions.koin}"
+    // Lifecycle
+    const val lifecycle_extension = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
+    const val lifecycle_livedata_ktx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
+    const val lifecycle_viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
+    const val lifecycle_runtime = "androidx.lifecycle:lifecycle-runtime:${Versions.lifecycle}"
+
+    // Coroutines
+    const val coroutines_core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
+    const val coroutines_android =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
+    const val coroutines_test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
+
+    //Retrofit
+    const val retrofit_runtime = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+    const val okHttp = "com.squareup.okhttp3:okhttp:${Versions.okHttp}"
+    const val retrofit_gson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
+    const val okhttp_logging_interceptor =
+        "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp}"
+
+    // Glide
+    const val glide_runtime = "com.github.bumptech.glide:glide:${Versions.glide}"
+    const val glide_compiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
+
+    // Koin
+    const val koin_ext = "org.koin:koin-androidx-ext:${Versions.koin}"
+    const val koin_viewmodel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
 
     // Testing
     const val junit = "junit:junit:${Versions.jUnit}"

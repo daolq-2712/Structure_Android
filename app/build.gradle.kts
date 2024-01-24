@@ -1,6 +1,7 @@
 plugins {
     id(Plugins.android_application)
     kotlin(Plugins.kotlin_android)
+    id(Plugins.kotlin_parcelize)
     id(Plugins.detekt).version(Versions.detekt)
 }
 
@@ -27,9 +28,11 @@ android {
         create("dev") {
             applicationIdSuffix = ".dev"
             resValue("string", "app_name", "Structure-Dev")
+            buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
         }
         create("prd") {
             resValue("string", "app_name", "Structure")
+            buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
             versionCode = AppConfigs.version_code_release
             versionName = AppConfigs.version_name_release
         }
@@ -57,6 +60,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = "11"
+    }
+    buildFeatures {
+        viewBinding = true
     }
 }
 
@@ -90,6 +96,38 @@ dependencies {
     implementation(Deps.material)
     implementation(Deps.constraint_layout)
 
+    //Navigation
+    implementation(Deps.navigation_fragment)
+    implementation(Deps.navigation_ui)
+    implementation(Deps.navigation_fragment_ktx)
+    implementation(Deps.navigation_ui_ktx)
+
+    //Lifecycle
+    implementation(Deps.lifecycle_extension)
+    implementation(Deps.lifecycle_livedata_ktx)
+    implementation(Deps.lifecycle_viewmodel_ktx)
+    implementation(Deps.lifecycle_runtime)
+
+    //Coroutine
+    implementation(Deps.coroutines_core)
+    implementation(Deps.coroutines_android)
+    testImplementation(Deps.coroutines_test)
+
+    //Retrofit
+    implementation(Deps.okHttp)
+    implementation(Deps.retrofit_runtime)
+    implementation(Deps.retrofit_gson)
+    implementation(Deps.okhttp_logging_interceptor)
+
+    //Koin
+    implementation(Deps.koin_ext)
+    implementation(Deps.koin_viewmodel)
+
+    //Glide
+    implementation(Deps.glide_runtime)
+    implementation(Deps.glide_compiler)
+
+    //Test
     testImplementation(Deps.junit)
     testImplementation(Deps.mockk)
 }
