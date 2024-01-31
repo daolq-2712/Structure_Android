@@ -31,14 +31,17 @@ class MoviesFragment : BaseFragment<MoviesFragmentBinding>(MoviesFragmentBinding
     }
 
     override fun bindData() {
-        viewModel.movies.observe(this, Observer { movies ->
-            mMovieAdapter.updateData(movies)
-        })
+        viewModel.movies.observe(
+            this,
+            Observer { movies ->
+                mMovieAdapter.updateData(movies)
+            },
+        )
     }
 
-        override fun onItemClick(item: Movie?) {
-            item.notNull {
-                addFragment(R.id.layoutContainer, DetailFragment.newInstance(it.id), true)
-            }
+    override fun onItemClick(item: Movie?) {
+        item.notNull {
+            addFragment(R.id.layoutContainer, DetailFragment.newInstance(it.id), true)
+        }
     }
 }

@@ -65,7 +65,6 @@ object Deps {
     const val navigation_ui_ktx = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
 
     // Lifecycle
-    const val lifecycle_extension = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
     const val lifecycle_livedata_ktx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
     const val lifecycle_viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
     const val lifecycle_runtime = "androidx.lifecycle:lifecycle-runtime:${Versions.lifecycle}"
@@ -88,8 +87,7 @@ object Deps {
     const val glide_compiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
 
     // Koin
-    const val koin_ext = "org.koin:koin-androidx-ext:${Versions.koin}"
-    const val koin_viewmodel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
+    const val koin = "io.insert-koin:koin-android:${Versions.koin}"
 
     // Testing
     const val junit = "junit:junit:${Versions.jUnit}"

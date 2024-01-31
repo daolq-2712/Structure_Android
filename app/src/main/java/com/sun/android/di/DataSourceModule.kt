@@ -1,4 +1,4 @@
-package com.sun.android.data.di
+package com.sun.android.di
 
 import com.sun.android.data.source.MovieDataSource
 import com.sun.android.data.source.TokenDataSource

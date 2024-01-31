@@ -44,7 +44,7 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.ViewHolder?>() {
 
     class ViewHolder(
         private val binding: ItemLayoutMovieBinding,
-        private val itemClickListener: OnItemRecyclerViewClickListener<Movie>?
+        itemClickListener: OnItemRecyclerViewClickListener<Movie>?
     ) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
         private var movieData: Movie? = null

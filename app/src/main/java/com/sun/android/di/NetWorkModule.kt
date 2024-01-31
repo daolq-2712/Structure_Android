@@ -1,4 +1,4 @@
-package com.sun.android.data.di
+package com.sun.android.di
 
 import android.app.Application
 import com.google.gson.Gson
@@ -42,13 +42,16 @@ fun provideOkHttpClient(cache: Cache, interceptor: Interceptor): OkHttpClient {
     httpClientBuilder.addInterceptor(interceptor)
 
     httpClientBuilder.readTimeout(
-        NetWorkInstant.READ_TIMEOUT, TimeUnit.SECONDS
+        NetWorkInstant.READ_TIMEOUT,
+        TimeUnit.SECONDS
     )
     httpClientBuilder.writeTimeout(
-        NetWorkInstant.WRITE_TIMEOUT, TimeUnit.SECONDS
+        NetWorkInstant.WRITE_TIMEOUT,
+        TimeUnit.SECONDS
     )
     httpClientBuilder.connectTimeout(
-        NetWorkInstant.CONNECT_TIMEOUT, TimeUnit.SECONDS
+        NetWorkInstant.CONNECT_TIMEOUT,
+        TimeUnit.SECONDS
     )
 
     if (BuildConfig.DEBUG) {
@@ -61,11 +64,8 @@ fun provideOkHttpClient(cache: Cache, interceptor: Interceptor): OkHttpClient {
 }
 
 fun provideRetrofit(gson: Gson, okHttpClient: OkHttpClient): Retrofit {
-    return Retrofit.Builder()
-        .baseUrl(BuildConfig.BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create(gson))
-        .client(okHttpClient)
-        .build()
+    return Retrofit.Builder().baseUrl(BuildConfig.BASE_URL).addConverterFactory(GsonConverterFactory.create(gson))
+        .client(okHttpClient).build()
 }
 
 fun provideApiService(retrofit: Retrofit): ApiService {

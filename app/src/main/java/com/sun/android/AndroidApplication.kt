@@ -1,9 +1,9 @@
 package com.sun.android
 
 import android.app.Application
-import com.sun.android.data.di.DataSourceModule
-import com.sun.android.data.di.NetworkModule
-import com.sun.android.data.di.RepositoryModule
+import com.sun.android.di.DataSourceModule
+import com.sun.android.di.NetworkModule
+import com.sun.android.di.RepositoryModule
 import com.sun.android.di.AppModule
 import com.sun.android.di.ViewModelModule
 import org.koin.android.ext.koin.androidContext

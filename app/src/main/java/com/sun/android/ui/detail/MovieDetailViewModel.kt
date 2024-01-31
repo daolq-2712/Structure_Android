@@ -11,9 +11,8 @@ class MovieDetailViewModel(private val movieRepository: MovieRepository) : BaseV
     fun requestMovieDetails(movieId: Int) {
         launchTaskSync(onRequest = {
             movieRepository.getDetailMovies(movieId)
-        },
-            onSuccess = {
-                movie.value = it
-            })
+        }, onSuccess = {
+            movie.value = it
+        })
     }
 }

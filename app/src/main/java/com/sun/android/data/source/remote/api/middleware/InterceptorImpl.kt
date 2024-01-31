@@ -23,7 +23,6 @@ class InterceptorImpl(
         var response = chain.proceed(request)
 
         if (!isRefreshToken && response.code == HttpURLConnection.HTTP_UNAUTHORIZED) {
-
             tokenRepository.getToken()?.let { token ->
                 val newRequest = initNewRequest(request, token)
                 response.close()

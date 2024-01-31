@@ -10,7 +10,7 @@ buildscript {
 }
 
 android {
-    namespace = "com.sun.structure_android"
+    namespace = "com.sun.android"
     compileSdk = AppConfigs.compile_sdk_version
 
     defaultConfig {
@@ -103,7 +103,6 @@ dependencies {
     implementation(Deps.navigation_ui_ktx)
 
     //Lifecycle
-    implementation(Deps.lifecycle_extension)
     implementation(Deps.lifecycle_livedata_ktx)
     implementation(Deps.lifecycle_viewmodel_ktx)
     implementation(Deps.lifecycle_runtime)
@@ -120,8 +119,7 @@ dependencies {
     implementation(Deps.okhttp_logging_interceptor)
 
     //Koin
-    implementation(Deps.koin_ext)
-    implementation(Deps.koin_viewmodel)
+    implementation(Deps.koin)
 
     //Glide
     implementation(Deps.glide_runtime)

@@ -5,8 +5,8 @@ import com.sun.android.utils.dispatchers.BaseDispatcherProvider
 import kotlin.coroutines.CoroutineContext
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.withContext
-import org.koin.core.KoinComponent
-import org.koin.core.get
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.get
 
 abstract class BaseRepository : KoinComponent {
 

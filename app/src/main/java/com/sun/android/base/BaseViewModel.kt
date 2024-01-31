@@ -19,7 +19,6 @@ open class BaseViewModel : ViewModel() {
         onError: (Exception) -> Unit = {},
         isShowLoading: Boolean = true
     ) = viewModelScope.launch {
-
         showLoading(isShowLoading)
         when (val asynchronousTasks = onRequest(this)) {
             is DataResult.Success -> onSuccess(asynchronousTasks.data)
@@ -29,6 +28,8 @@ open class BaseViewModel : ViewModel() {
                     getErrorResponse()?.let { errorResponse.value = it }
                 }
             }
+
+            else -> {}
         }
         hideLoading(isShowLoading)
     }
