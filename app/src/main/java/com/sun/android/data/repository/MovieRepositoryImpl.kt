@@ -1,18 +1,20 @@
 package com.sun.android.data.repository
 
-import com.sun.android.base.BaseRepository
 import com.sun.android.data.MovieRepository
+import com.sun.android.data.model.Movie
 import com.sun.android.data.source.MovieDataSource
+import kotlinx.coroutines.flow.flow
+import org.koin.core.component.KoinComponent
 
-class MovieRepositoryImpl constructor(
+class MovieRepositoryImpl(
     private val remote: MovieDataSource.Remote
-) : BaseRepository(), MovieRepository {
+) : KoinComponent, MovieRepository {
 
-    override suspend fun getMovies() = withResultContext {
-        remote.getMovies().data
+    override fun getMovies() = flow {
+        emit(remote.getMovies().data)
     }
 
-    override suspend fun getDetailMovies(movieId: Int) = withResultContext {
-        remote.getMovieDetail(movieId = movieId)
+    override fun getDetailMovies(movieId: Int) = flow<Movie> {
+        emit(remote.getMovieDetail(movieId = movieId))
     }
 }

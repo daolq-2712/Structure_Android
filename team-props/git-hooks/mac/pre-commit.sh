@@ -2,7 +2,7 @@
 echo "Running static analysis..."
 
 echo "Start running ktlint"
-./gradlew ktlintFormat ktlintCheck --daemon
+./gradlew ktlintCheck --daemon
 status1=$?
 if [[ "$status1" = 0 ]] ; then
     echo "*******************************************************"

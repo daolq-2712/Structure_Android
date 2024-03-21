@@ -1,5 +1,5 @@
 package com.sun.android.ui
 
-import com.sun.android.base.BaseViewModel
+import androidx.lifecycle.ViewModel
 
-class MainViewModel : BaseViewModel()
+class MainViewModel : ViewModel()

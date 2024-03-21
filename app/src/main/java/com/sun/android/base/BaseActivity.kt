@@ -3,6 +3,7 @@ package com.sun.android.base
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
 
 typealias ActivityInflate<T> = (LayoutInflater) -> T
@@ -11,7 +12,7 @@ abstract class BaseActivity<VB : ViewBinding>(private val inflate: ActivityInfla
     private var _binding: VB? = null
 
     val binding get() = _binding!!
-    abstract val viewModel: BaseViewModel
+    abstract val viewModel: ViewModel
 
     protected abstract fun initialize()
 
