@@ -1,23 +1,24 @@
 package com.sun.android.ui.listmovie
 
-import com.sun.android.base.BaseViewModel
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.sun.android.data.MovieRepository
 import com.sun.android.data.model.Movie
 import com.sun.android.utils.LogUtils
 import com.sun.android.utils.livedata.SingleLiveData
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.launch
 
-class MoviesViewModel(private val movieRepository: MovieRepository) : BaseViewModel() {
+class MoviesViewModel(private val movieRepository: MovieRepository) : ViewModel() {
     val movies = SingleLiveData<List<Movie>>()
 
     fun requestTopRateMovies() {
-        launchTaskSync(onRequest = {
-            movieRepository.getMovies()
-        }, onSuccess = {
-            movies.value = it
-            LogUtils.e("QQQQQ", movies.toString())
-        }, onError = {
-            LogUtils.e("QQQQQ", it.toString())
-            // No-op
-        })
+        viewModelScope.launch {
+            movieRepository.getMovies().catch { e ->
+                LogUtils.e("QQQQQ", e.toString())
+            }.collect {
+                movies.value = it
+            }
+        }
     }
 }
