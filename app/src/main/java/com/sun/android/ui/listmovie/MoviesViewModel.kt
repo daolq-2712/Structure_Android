@@ -5,8 +5,10 @@ import androidx.lifecycle.viewModelScope
 import com.sun.android.data.MovieRepository
 import com.sun.android.data.model.Movie
 import com.sun.android.utils.LogUtils
+import com.sun.android.utils.dispatchers.DispatcherProvider
 import com.sun.android.utils.livedata.SingleLiveData
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 
 class MoviesViewModel(private val movieRepository: MovieRepository) : ViewModel() {
@@ -15,10 +17,11 @@ class MoviesViewModel(private val movieRepository: MovieRepository) : ViewModel(
     fun requestTopRateMovies() {
         viewModelScope.launch {
             movieRepository.getMovies().catch { e ->
-                LogUtils.e("QQQQQ", e.toString())
-            }.collect {
-                movies.value = it
-            }
+                LogUtils.e("requestTopRateMovies", e.toString())
+            }.flowOn(DispatcherProvider().io())
+                .collect {
+                    movies.value = it
+                }
         }
     }
 }

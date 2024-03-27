@@ -8,7 +8,9 @@ interface MovieDataSource {
      * Local
      */
     interface Local {
-        fun getMoviesLocal(): BaseResponse<List<Movie>>
+        suspend fun getMoviesLocal(): List<Movie>
+        suspend fun updateMovies(movies: List<Movie>)
+        suspend fun getMovieDetailLocal(movieId: Int): Movie
     }
 
     /**
