@@ -1,7 +1,11 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id(Plugins.android_application)
     kotlin(Plugins.kotlin_android)
+    id(Plugins.kotlin_parcelize)
     id(Plugins.detekt).version(Versions.detekt)
+    id(Plugins.ksp).version(Versions.ksp)
 }
 
 buildscript {
@@ -9,7 +13,7 @@ buildscript {
 }
 
 android {
-    namespace = "com.sun.structure_android"
+    namespace = "com.sun.android"
     compileSdk = AppConfigs.compile_sdk_version
 
     defaultConfig {
@@ -18,6 +22,9 @@ android {
         targetSdk = AppConfigs.target_sdk_version
         versionCode = AppConfigs.version_code
         versionName = AppConfigs.version_name
+
+        buildConfigField("String", "API_KEY", gradleLocalProperties(rootDir).getProperty("api_key"))
+        buildConfigField("String", "BASE_URL_IMAGE", gradleLocalProperties(rootDir).getProperty("base_url_image"))
     }
 
     @Suppress("UnstableApiUsage")
@@ -27,9 +34,11 @@ android {
         create("dev") {
             applicationIdSuffix = ".dev"
             resValue("string", "app_name", "Structure-Dev")
+            buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
         }
         create("prd") {
             resValue("string", "app_name", "Structure")
+            buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
             versionCode = AppConfigs.version_code_release
             versionName = AppConfigs.version_name_release
         }
@@ -52,11 +61,14 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
+    }
+    buildFeatures {
+        viewBinding = true
     }
 }
 
@@ -90,6 +102,42 @@ dependencies {
     implementation(Deps.material)
     implementation(Deps.constraint_layout)
 
+    //Navigation
+    implementation(Deps.navigation_fragment)
+    implementation(Deps.navigation_ui)
+    implementation(Deps.navigation_fragment_ktx)
+    implementation(Deps.navigation_ui_ktx)
+
+    //Lifecycle
+    implementation(Deps.lifecycle_livedata_ktx)
+    implementation(Deps.lifecycle_viewmodel_ktx)
+    implementation(Deps.lifecycle_runtime)
+
+    //Coroutine
+    implementation(Deps.coroutines_core)
+    implementation(Deps.coroutines_android)
+    testImplementation(Deps.coroutines_test)
+
+    //Retrofit
+    implementation(Deps.okHttp)
+    implementation(Deps.retrofit_runtime)
+    implementation(Deps.retrofit_gson)
+    implementation(Deps.okhttp_logging_interceptor)
+
+    //Koin
+    implementation(Deps.koin)
+
+    //Glide
+    implementation(Deps.glide_runtime)
+    implementation(Deps.glide_compiler)
+
+    // Room
+    implementation(Deps.room_runtime)
+    ksp(Deps.room_ksp)
+    implementation(Deps.room_ktx)
+
+    //Test
     testImplementation(Deps.junit)
     testImplementation(Deps.mockk)
+
 }
