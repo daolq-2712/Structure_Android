@@ -22,11 +22,14 @@ object Versions {
 
     const val koin = "3.4.0"
 
+    const val room = "2.5.2"
+
     const val jUnit = "4.13.2"
     const val mockk = "1.13.2"
 
     const val ktlint = "0.48.1"
     const val detekt = "1.23.3"
+    const val ksp = "1.9.0-1.0.12"
 }
 
 object AppConfigs {
@@ -50,6 +53,7 @@ object Plugins {
     const val kotlin_android = "android"
     const val kotlin_parcelize = "kotlin-parcelize"
     const val detekt = "io.gitlab.arturbosch.detekt"
+    const val ksp = "com.google.devtools.ksp"
 }
 
 object Deps {
@@ -88,6 +92,11 @@ object Deps {
 
     // Koin
     const val koin = "io.insert-koin:koin-android:${Versions.koin}"
+
+    // Room
+    const val room_runtime = "androidx.room:room-runtime:${Versions.room}"
+    const val room_ksp = "androidx.room:room-compiler:${Versions.room}"
+    const val room_ktx = "androidx.room:room-ktx:${Versions.room}"
 
     // Testing
     const val junit = "junit:junit:${Versions.jUnit}"
