@@ -8,13 +8,13 @@ import com.sun.data.source.remote.MovieRemoteImpl
 import org.koin.dsl.module
 
 val DataSourceModule = module {
-    single<com.sun.data.source.TokenDataSource.Local> { com.sun.data.source.local.TokenLocalImpl(get()) }
+    single<TokenDataSource.Local> { TokenLocalImpl(get()) }
 
-    single<com.sun.data.source.MovieDataSource.Remote> {
-        com.sun.data.source.remote.MovieRemoteImpl(
+    single<MovieDataSource.Remote> {
+        MovieRemoteImpl(
             get()
         )
     }
 
-    single<com.sun.data.source.MovieDataSource.Local> { com.sun.data.source.local.MovieLocalImpl(get()) }
+    single<MovieDataSource.Local> { MovieLocalImpl(get()) }
 }

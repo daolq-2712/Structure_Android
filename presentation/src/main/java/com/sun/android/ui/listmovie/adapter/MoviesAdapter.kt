@@ -4,16 +4,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.sun.data.model.Movie
 import com.sun.android.databinding.ItemLayoutMovieBinding
 import com.sun.android.utils.extension.loadImageCircleWithUrl
 import com.sun.android.utils.extension.notNull
 import com.sun.android.utils.recycler.OnItemRecyclerViewClickListener
+import com.sun.domain.entities.MovieEntity
 
 class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.ViewHolder?>() {
 
-    private val movies = mutableListOf<com.sun.data.model.Movie>()
-    private var onItemClickListener: OnItemRecyclerViewClickListener<com.sun.data.model.Movie>? = null
+    private val movies = mutableListOf<MovieEntity>()
+    private var onItemClickListener: OnItemRecyclerViewClickListener<MovieEntity>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemLayoutMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -29,12 +29,12 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.ViewHolder?>() {
     }
 
     fun registerItemRecyclerViewClickListener(
-        onItemRecyclerViewClickListener: OnItemRecyclerViewClickListener<com.sun.data.model.Movie>?
+        onItemRecyclerViewClickListener: OnItemRecyclerViewClickListener<MovieEntity>?
     ) {
         onItemClickListener = onItemRecyclerViewClickListener
     }
 
-    fun updateData(movies: List<com.sun.data.model.Movie>) {
+    fun updateData(movies: List<MovieEntity>) {
         movies.notNull {
             this.movies.clear()
             this.movies.addAll(it)
@@ -44,29 +44,29 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.ViewHolder?>() {
 
     class ViewHolder(
         private val binding: ItemLayoutMovieBinding,
-        itemClickListener: OnItemRecyclerViewClickListener<com.sun.data.model.Movie>?
+        itemClickListener: OnItemRecyclerViewClickListener<MovieEntity>?
     ) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
-        private var movieData: com.sun.data.model.Movie? = null
-        private var listener: OnItemRecyclerViewClickListener<com.sun.data.model.Movie>? = null
+        private var movieEntity: MovieEntity? = null
+        private var listener: OnItemRecyclerViewClickListener<MovieEntity>? = null
 
         init {
             itemView.setOnClickListener(this)
             listener = itemClickListener
         }
 
-        fun bindViewData(movie: com.sun.data.model.Movie) {
+        fun bindViewData(movie: MovieEntity) {
             movie.let {
                 binding.textViewTitle.text = it.title
-                binding.textViewRatting.text = it.vote.toString()
-                binding.textViewContent.text = it.originalTitle
-                binding.imageMovie.loadImageCircleWithUrl(it.urlImage)
-                movieData = it
+                binding.textViewRatting.text = it.rating.toString()
+                binding.textViewContent.text = it.description
+                binding.imageMovie.loadImageCircleWithUrl(it.avatarUrl)
+                movieEntity = it
             }
         }
 
         override fun onClick(view: View?) {
-            listener?.onItemClick(movieData)
+            listener?.onItemClick(movieEntity)
         }
     }
 }

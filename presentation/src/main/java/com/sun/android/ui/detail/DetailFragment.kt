@@ -26,11 +26,11 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding
 
     override fun bindData() {
         viewModel.movie.observe(viewLifecycleOwner, Observer {
-            binding.imageBackDrop.loadImageWithUrl(it.backDropImage)
-            binding.imageMovie.loadImageCircleWithUrl(it.urlImage)
+            binding.imageBackDrop.loadImageWithUrl(it.backgroundUrl)
+            binding.imageMovie.loadImageCircleWithUrl(it.avatarUrl)
             binding.textTitle.text = it.title
-            binding.textDescription.text = it.overView
-            binding.textRatting.text = it.vote.toString()
+            binding.textDescription.text = it.description
+            binding.textRatting.text = it.rating.toString()
             binding.textTotalReview.text = it.voteCount.toString()
         })
     }

@@ -3,8 +3,7 @@ package com.sun.android.di
 import android.app.Application
 import com.google.gson.Gson
 import com.sun.android.BuildConfig
-import com.sun.domain.TokenRepository
-import com.sun.data.source.remote.api.ApiService
+import com.sun.domain.repository.TokenRepository
 import com.sun.data.source.remote.api.middleware.InterceptorImpl
 import java.util.concurrent.TimeUnit
 import okhttp3.Cache
@@ -32,8 +31,8 @@ fun provideOkHttpCache(app: Application): Cache {
     return Cache(app.cacheDir, cacheSize)
 }
 
-fun provideInterceptor(tokenRepository: com.sun.domain.TokenRepository): Interceptor {
-    return com.sun.data.source.remote.api.middleware.InterceptorImpl(tokenRepository)
+fun provideInterceptor(tokenRepository: TokenRepository): Interceptor {
+    return InterceptorImpl(tokenRepository)
 }
 
 fun provideOkHttpClient(cache: Cache, interceptor: Interceptor): OkHttpClient {

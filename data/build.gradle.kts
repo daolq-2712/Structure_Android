@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id("com.android.library")
     kotlin(Plugins.kotlin_android)
@@ -11,6 +13,8 @@ android {
 
     defaultConfig {
         minSdk = 24
+
+        buildConfigField("String", "API_KEY", gradleLocalProperties(rootDir).getProperty("api_key"))
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -35,6 +39,7 @@ android {
 }
 
 dependencies {
+    api(project(":domain"))
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -42,7 +47,6 @@ dependencies {
 
     // Room
     implementation(Deps.room_runtime)
-    implementation(project(":domain"))
     ksp(Deps.room_ksp)
     implementation(Deps.room_ktx)
 

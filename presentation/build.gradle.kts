@@ -23,7 +23,6 @@ android {
         versionCode = AppConfigs.version_code
         versionName = AppConfigs.version_name
 
-        buildConfigField("String", "API_KEY", gradleLocalProperties(rootDir).getProperty("api_key"))
         buildConfigField("String", "BASE_URL_IMAGE", gradleLocalProperties(rootDir).getProperty("base_url_image"))
     }
 
@@ -97,6 +96,9 @@ tasks {
 }
 
 dependencies {
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    implementation(project(":data"))
+
     implementation(Deps.core_ktx)
     implementation(Deps.appcompat)
     implementation(Deps.material)

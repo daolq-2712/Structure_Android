@@ -1,7 +1,7 @@
 package com.sun.data.source.remote.api.middleware
 
 import androidx.annotation.NonNull
-import com.sun.android.data.TokenRepository
+import com.sun.domain.repository.TokenRepository
 import java.io.IOException
 import java.net.HttpURLConnection
 import okhttp3.Interceptor
