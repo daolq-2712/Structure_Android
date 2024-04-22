@@ -8,12 +8,12 @@ import com.sun.android.databinding.ItemLayoutMovieBinding
 import com.sun.android.utils.extension.loadImageCircleWithUrl
 import com.sun.android.utils.extension.notNull
 import com.sun.android.utils.recycler.OnItemRecyclerViewClickListener
-import com.sun.domain.entities.MovieEntity
+import com.sun.domain.entities.Movie
 
 class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.ViewHolder?>() {
 
-    private val movies = mutableListOf<MovieEntity>()
-    private var onItemClickListener: OnItemRecyclerViewClickListener<MovieEntity>? = null
+    private val movies = mutableListOf<Movie>()
+    private var onItemClickListener: OnItemRecyclerViewClickListener<Movie>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemLayoutMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -29,12 +29,12 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.ViewHolder?>() {
     }
 
     fun registerItemRecyclerViewClickListener(
-        onItemRecyclerViewClickListener: OnItemRecyclerViewClickListener<MovieEntity>?
+        onItemRecyclerViewClickListener: OnItemRecyclerViewClickListener<Movie>?
     ) {
         onItemClickListener = onItemRecyclerViewClickListener
     }
 
-    fun updateData(movies: List<MovieEntity>) {
+    fun updateData(movies: List<Movie>) {
         movies.notNull {
             this.movies.clear()
             this.movies.addAll(it)
@@ -44,18 +44,18 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.ViewHolder?>() {
 
     class ViewHolder(
         private val binding: ItemLayoutMovieBinding,
-        itemClickListener: OnItemRecyclerViewClickListener<MovieEntity>?
+        itemClickListener: OnItemRecyclerViewClickListener<Movie>?
     ) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
-        private var movieEntity: MovieEntity? = null
-        private var listener: OnItemRecyclerViewClickListener<MovieEntity>? = null
+        private var movieEntity: Movie? = null
+        private var listener: OnItemRecyclerViewClickListener<Movie>? = null
 
         init {
             itemView.setOnClickListener(this)
             listener = itemClickListener
         }
 
-        fun bindViewData(movie: MovieEntity) {
+        fun bindViewData(movie: Movie) {
             movie.let {
                 binding.textViewTitle.text = it.title
                 binding.textViewRatting.text = it.rating.toString()

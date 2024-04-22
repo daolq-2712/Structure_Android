@@ -1,6 +1,6 @@
 package com.sun.domain.entities
 
-data class MovieEntity(
+data class Movie(
     val id: Int,
     val title: String,
     val description: String,

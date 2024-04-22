@@ -9,11 +9,11 @@ import com.sun.android.ui.listmovie.adapter.MoviesAdapter
 import com.sun.android.utils.extension.addFragment
 import com.sun.android.utils.extension.notNull
 import com.sun.android.utils.recycler.OnItemRecyclerViewClickListener
-import com.sun.domain.entities.MovieEntity
+import com.sun.domain.entities.Movie
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MoviesFragment : BaseFragment<MoviesFragmentBinding>(MoviesFragmentBinding::inflate),
-    OnItemRecyclerViewClickListener<MovieEntity> {
+    OnItemRecyclerViewClickListener<Movie> {
 
     private val mMovieAdapter: MoviesAdapter by lazy { MoviesAdapter() }
 
@@ -39,7 +39,7 @@ class MoviesFragment : BaseFragment<MoviesFragmentBinding>(MoviesFragmentBinding
         )
     }
 
-    override fun onItemClick(item: MovieEntity?) {
+    override fun onItemClick(item: Movie?) {
         item.notNull {
             addFragment(R.id.layoutContainer, DetailFragment.newInstance(it.id), true)
         }

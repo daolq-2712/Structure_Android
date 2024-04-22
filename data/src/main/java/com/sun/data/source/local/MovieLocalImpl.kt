@@ -1,6 +1,6 @@
 package com.sun.data.source.local
 
-import com.sun.data.entities.MovieLocal
+import com.sun.data.source.local.entities.MovieLocal
 import com.sun.data.source.MovieDataSource
 import com.sun.data.source.local.room.MovieDao
 

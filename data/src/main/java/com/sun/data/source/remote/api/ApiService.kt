@@ -1,6 +1,6 @@
 package com.sun.data.source.remote.api
 
-import com.sun.data.entities.MovieRemote
+import com.sun.data.source.remote.model.MovieRemote
 import com.sun.data.source.remote.api.response.BaseResponse
 import retrofit2.http.GET
 import retrofit2.http.Path

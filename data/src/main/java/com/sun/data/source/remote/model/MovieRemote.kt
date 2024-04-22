@@ -1,10 +1,10 @@
-package com.sun.data.entities
+package com.sun.data.source.remote.model
 
 import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import com.sun.data.Mapper
-import com.sun.domain.entities.MovieEntity
+import com.sun.data.source.local.entities.MovieLocal
+import com.sun.domain.entities.Movie
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -33,28 +33,28 @@ data class MovieRemote(
     @SerializedName("original_title")
     @Expose
     var originalTitle: String = ""
-) : Parcelable, Mapper<MovieEntity, MovieLocal, Any>() {
-    override fun mapToEntity(): MovieEntity {
-        return MovieEntity(
-            id = id,
-            title = title,
-            description = overView,
-            avatarUrl = urlImage,
-            backgroundUrl = backDropImage,
-            rating = rating,
-            voteCount = voteCount
-        )
-    }
+) : Parcelable
 
-    override fun mapToLocal(): MovieLocal {
-        return MovieLocal(
-            id = id,
-            description = overView,
-            image = urlImage,
-            backgroundUrl = backDropImage,
-            title = title,
-            rating = rating,
-            voteCount = voteCount
-        )
-    }
+fun MovieRemote.toEntity(): Movie {
+    return Movie(
+        id = id,
+        title = title,
+        description = overView,
+        avatarUrl = urlImage,
+        backgroundUrl = backDropImage,
+        rating = rating,
+        voteCount = voteCount
+    )
+}
+
+fun MovieRemote.toLocal(): MovieLocal {
+    return MovieLocal(
+        id = id,
+        description = overView,
+        image = urlImage,
+        backgroundUrl = backDropImage,
+        title = title,
+        rating = rating,
+        voteCount = voteCount
+    )
 }

@@ -1,7 +1,7 @@
 package com.sun.data.source
 
-import com.sun.data.entities.MovieRemote
-import com.sun.data.entities.MovieLocal
+import com.sun.data.source.remote.model.MovieRemote
+import com.sun.data.source.local.entities.MovieLocal
 import com.sun.data.source.remote.api.response.BaseResponse
 
 interface MovieDataSource {

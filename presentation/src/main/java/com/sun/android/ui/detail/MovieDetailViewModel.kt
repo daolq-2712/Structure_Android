@@ -5,12 +5,12 @@ import androidx.lifecycle.viewModelScope
 import com.sun.domain.repository.MovieRepository
 import com.sun.android.utils.LogUtils
 import com.sun.android.utils.livedata.SingleLiveData
-import com.sun.domain.entities.MovieEntity
+import com.sun.domain.entities.Movie
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
 class MovieDetailViewModel(private val movieRepository: MovieRepository) : ViewModel() {
-    val movie = SingleLiveData<MovieEntity>()
+    val movie = SingleLiveData<Movie>()
 
     fun requestMovieDetails(movieId: Int) {
         viewModelScope.launch {

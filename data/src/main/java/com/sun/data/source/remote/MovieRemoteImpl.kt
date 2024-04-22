@@ -1,7 +1,7 @@
 package com.sun.data.source.remote
 
 import com.sun.data.BuildConfig
-import com.sun.data.entities.MovieRemote
+import com.sun.data.source.remote.model.MovieRemote
 import com.sun.data.source.MovieDataSource
 import com.sun.data.source.remote.api.ApiService
 import com.sun.data.source.remote.api.response.BaseResponse
