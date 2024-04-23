@@ -3,25 +3,24 @@ package com.sun.android.ui.listmovie
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sun.android.utils.LogUtils
-import com.sun.android.utils.dispatchers.DispatcherProvider
 import com.sun.android.utils.livedata.SingleLiveData
 import com.sun.domain.entities.Movie
-import com.sun.domain.repository.MovieRepository
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.flowOn
+import com.sun.domain.usecase.GetMovieListUseCase
 import kotlinx.coroutines.launch
 
-class MoviesViewModel(private val movieRepository: MovieRepository) : ViewModel() {
+class MoviesViewModel(private val getMovieListUseCase: GetMovieListUseCase) : ViewModel() {
     val movies = SingleLiveData<List<Movie>>()
 
     fun requestTopRateMovies() {
         viewModelScope.launch {
-            movieRepository.getMovies().catch { e ->
-                LogUtils.e("requestTopRateMovies", e.toString())
-            }.flowOn(DispatcherProvider().io())
-                .collect {
+            getMovieListUseCase(GetMovieListUseCase.Input()) {
+                onSuccess {
                     movies.value = it
                 }
+                onError {
+                    LogUtils.e("requestTopRateMovies", it.toString())
+                }
+            }
         }
     }
 }

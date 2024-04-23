@@ -6,8 +6,8 @@ import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.sun.android.utils.DateTimeUtils
-import com.sun.android.utils.dispatchers.BaseDispatcherProvider
-import com.sun.android.utils.dispatchers.DispatcherProvider
+import com.sun.domain.dispatchers.BaseDispatcherProvider
+import com.sun.domain.dispatchers.DispatcherProvider
 import com.sun.data.source.local.api.SharedPrefsApi
 import com.sun.data.source.local.api.sharedpref.SharedPrefsImpl
 import org.koin.dsl.module

@@ -6,13 +6,15 @@ import com.sun.android.di.NetworkModule
 import com.sun.android.di.RepositoryModule
 import com.sun.android.di.AppModule
 import com.sun.android.di.ViewModelModule
+import com.sun.android.di.UseCaseModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
 import org.koin.core.context.startKoin
 
 class AndroidApplication : Application() {
 
-    private val rootModule = listOf(AppModule, NetworkModule, DataSourceModule, RepositoryModule, ViewModelModule)
+    private val rootModule =
+        listOf(AppModule, NetworkModule, DataSourceModule, RepositoryModule, UseCaseModule, ViewModelModule)
 
     override fun onCreate() {
         super.onCreate()
