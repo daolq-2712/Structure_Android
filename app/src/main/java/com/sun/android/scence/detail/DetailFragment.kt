@@ -1,4 +1,4 @@
-package com.sun.android.ui.detail
+package com.sun.android.scence.detail
 
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer

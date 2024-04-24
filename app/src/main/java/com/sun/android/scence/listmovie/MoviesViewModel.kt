@@ -1,4 +1,4 @@
-package com.sun.android.ui.listmovie
+package com.sun.android.scence.listmovie
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

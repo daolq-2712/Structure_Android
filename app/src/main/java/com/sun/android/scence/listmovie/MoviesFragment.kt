@@ -1,12 +1,12 @@
-package com.sun.android.ui.listmovie
+package com.sun.android.scence.listmovie
 
 import androidx.lifecycle.Observer
 import com.sun.android.R
 import com.sun.android.base.BaseFragment
 import com.sun.android.data.model.Movie
 import com.sun.android.databinding.MoviesFragmentBinding
-import com.sun.android.ui.detail.DetailFragment
-import com.sun.android.ui.listmovie.adapter.MoviesAdapter
+import com.sun.android.scence.detail.DetailFragment
+import com.sun.android.scence.listmovie.adapter.MoviesAdapter
 import com.sun.android.utils.extension.addFragment
 import com.sun.android.utils.extension.notNull
 import com.sun.android.utils.recycler.OnItemRecyclerViewClickListener

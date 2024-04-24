@@ -1,9 +1,9 @@
-package com.sun.android.ui
+package com.sun.android.scence
 
 import com.sun.android.R
 import com.sun.android.base.BaseActivity
 import com.sun.android.databinding.ActivityMainBinding
-import com.sun.android.ui.listmovie.MoviesFragment
+import com.sun.android.scence.listmovie.MoviesFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {

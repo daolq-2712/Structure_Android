@@ -1,4 +1,4 @@
-package com.sun.android.ui.listmovie.adapter
+package com.sun.android.scence.listmovie.adapter
 
 import android.view.LayoutInflater
 import android.view.View

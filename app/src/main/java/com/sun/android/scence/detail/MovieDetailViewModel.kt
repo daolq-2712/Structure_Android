@@ -1,4 +1,4 @@
-package com.sun.android.ui.detail
+package com.sun.android.scence.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
