@@ -2,11 +2,13 @@ package com.sun.android.scence.detail
 
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import com.sun.android.base.BaseFragment
 import com.sun.android.databinding.FragmentDetailBinding
 import com.sun.android.utils.extension.goBackFragment
 import com.sun.android.utils.extension.loadImageCircleWithUrl
 import com.sun.android.utils.extension.loadImageWithUrl
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding::inflate) {
@@ -20,19 +22,37 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding
     override fun initData() {
         arguments?.run {
             val mMovieId = getInt(ARGUMENT_MOVIE_ID, -1)
-            viewModel.requestMovieDetails(mMovieId)
+            lifecycleScope.launch {
+                viewModel.movieDetailIntent.send(MovieDetailIntent.FetchMovieDetail(mMovieId))
+            }
         }
     }
 
     override fun bindData() {
-        viewModel.movie.observe(viewLifecycleOwner, Observer {
-            binding.imageBackDrop.loadImageWithUrl(it.backDropImage)
-            binding.imageMovie.loadImageCircleWithUrl(it.urlImage)
-            binding.textTitle.text = it.title
-            binding.textDescription.text = it.overView
-            binding.textRatting.text = it.vote.toString()
-            binding.textTotalReview.text = it.voteCount.toString()
-        })
+        lifecycleScope.launch {
+            viewModel.state.collect {
+                    when(it) {
+                        is MovieDetailState.Idle -> {
+
+                        }
+                        is MovieDetailState.Loading -> {
+
+                        }
+                        is MovieDetailState.MovieData -> {
+                            val movie = it.movie
+                            binding.imageBackDrop.loadImageWithUrl(movie.backDropImage)
+                            binding.imageMovie.loadImageCircleWithUrl(movie.urlImage)
+                            binding.textTitle.text = movie.title
+                            binding.textDescription.text = movie.overView
+                            binding.textRatting.text = movie.vote.toString()
+                            binding.textTotalReview.text = movie.voteCount.toString()
+                        }
+                        is MovieDetailState.Error -> {
+
+                        }
+                    }
+            }
+        }
     }
 
     companion object {
