@@ -62,6 +62,13 @@ dependencies {
     implementation(libs.androidx.material)
     implementation(libs.androidx.navigation.compose)
 
+    // Lifecycle
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.4")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.4")
+
+    // Gson
+    implementation("com.google.code.gson:gson:2.10.1")
+
     // Image
     implementation(libs.io.coil.kt.compose)
 
