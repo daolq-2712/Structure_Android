@@ -4,8 +4,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -79,7 +77,7 @@ fun MainScreen() {
             Modifier.padding(innerPadding)
         ) {
             composable(route = BottomNavScreen.Home.route) {
-                HomeScreen("Home Screen")
+                HomeScreen()
             }
             composable(route = BottomNavScreen.Bookmark.route) {
                 BookmarkScreen("Bookmark Screen")

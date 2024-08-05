@@ -62,6 +62,9 @@ dependencies {
     implementation(libs.androidx.material)
     implementation(libs.androidx.navigation.compose)
 
+    // Image
+    implementation(libs.io.coil.kt.compose)
+
     testImplementation(libs.junit)
 
     androidTestImplementation(libs.androidx.junit)
