@@ -89,7 +89,6 @@ fun TopHeader() {
         Icon(
             painter = painterResource(id = R.drawable.ic_menu),
             modifier = Modifier.size(24.dp),
-            tint = AppColors.Violet,
             contentDescription = null,
         )
         Text(
@@ -98,7 +97,6 @@ fun TopHeader() {
             textAlign = TextAlign.Center,
             fontSize = 16.sp,
             fontWeight = FontWeight.Medium,
-            color = AppColors.Violet
         )
         Spacer(modifier = Modifier.size(24.dp))
     }
@@ -156,7 +154,7 @@ fun ListNowShowingMovies() {
 
 @Composable
 fun LisPopularMovies() {
-    Column {
+    Column(modifier = Modifier.padding(horizontal = 24.dp)) {
         repeat(5) {
             PopularMovieItem()
         }

@@ -16,6 +16,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
@@ -35,7 +36,7 @@ fun PopularMovieItemPreview() {
 
 @Composable
 fun PopularMovieItem() {
-    Row {
+    Row(modifier = Modifier.padding(vertical = 8.dp)) {
         AsyncImage(
             modifier = Modifier
                 .width(85.dp)
@@ -56,7 +57,10 @@ fun PopularMovieItem() {
                 fontWeight = FontWeight.Medium
             )
             Spacer(modifier = Modifier.height(8.dp))
-            Row(modifier = Modifier.wrapContentSize()) {
+            Row(
+                modifier = Modifier.wrapContentSize(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_star), contentDescription = null,
                     modifier = Modifier.size(12.dp), tint = AppColors.LightningYellow
@@ -73,7 +77,10 @@ fun PopularMovieItem() {
                 CategoryTag(category = "Fantasy")
             }
             Spacer(modifier = Modifier.height(8.dp))
-            Row(modifier = Modifier.wrapContentSize()) {
+            Row(
+                modifier = Modifier.wrapContentSize(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_clock),
                     modifier = Modifier.size(12.dp),
