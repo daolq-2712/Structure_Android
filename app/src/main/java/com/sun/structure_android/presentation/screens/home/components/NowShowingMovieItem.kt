@@ -1,5 +1,6 @@
 package com.sun.structure_android.presentation.screens.home.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -40,6 +41,9 @@ fun NowShowingMovieItem(movie: MovieData,onMovieClick: ((MovieData) -> Unit)? = 
         modifier = Modifier
             .width(143.dp)
             .wrapContentHeight()
+            .clickable {
+                onMovieClick?.invoke(movie)
+            }
     ) {
         Card(
             modifier = Modifier.wrapContentSize(),

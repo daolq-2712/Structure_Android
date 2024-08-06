@@ -1,6 +1,7 @@
 package com.sun.structure_android.presentation.screens.home.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -38,7 +39,11 @@ fun PopularMovieItemPreview() {
 
 @Composable
 fun PopularMovieItem(movie: MovieData, onMovieClick: ((MovieData) -> Unit)? = null) {
-    Row(modifier = Modifier.padding(vertical = 8.dp)) {
+    Row(modifier = Modifier
+        .padding(vertical = 8.dp)
+        .clickable {
+            onMovieClick?.invoke(movie)
+        }) {
         AsyncImage(
             modifier = Modifier
                 .width(85.dp)
@@ -71,7 +76,8 @@ fun PopularMovieItem(movie: MovieData, onMovieClick: ((MovieData) -> Unit)? = nu
                 Spacer(modifier = Modifier.width(4.dp))
                 Text(
                     text = movie.ratingFormatted,
-                    fontSize = 12.sp, color = AppColors.DustyGray)
+                    fontSize = 12.sp, color = AppColors.DustyGray
+                )
             }
             Spacer(modifier = Modifier.height(8.dp))
             Row {

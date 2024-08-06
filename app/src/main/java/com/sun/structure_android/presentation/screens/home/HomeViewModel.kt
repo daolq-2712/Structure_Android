@@ -1,13 +1,16 @@
 package com.sun.structure_android.presentation.screens.home
 
+import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.sun.structure_android.data.model.GenreData
 import com.sun.structure_android.data.model.MovieData
 import com.sun.structure_android.data.repository.MovieRepository
 import com.sun.structure_android.navigation.movie.MovieDestination
 import com.sun.structure_android.presentation.base.BaseViewModel
+import com.sun.structure_android.shared.extension.collectAsEffect
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -63,6 +66,8 @@ class HomeViewModel constructor(
     }
 
     fun goToMovieDetail(movie: MovieData) {
-        launch { _navigator.emit(MovieDestination.MovieDetail.createRoute(movie.id.toString())) }
+        launch {
+            _navigator.emit(MovieDestination.MovieDetail.createRoute(movie.id.toString()))
+        }
     }
 }

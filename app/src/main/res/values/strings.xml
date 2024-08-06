@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Structure_Android</string>
+
+    <!-- Screen -->
+    <string name="language">Language</string>
+    <string name="length">Length</string>
+    <string name="rating">Rating</string>
+    <string name="cast">Cast</string>
+    <string name="description">Description</string>
 </resources>

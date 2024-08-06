@@ -43,6 +43,7 @@ import com.sun.structure_android.navigation.BaseDestination
 import com.sun.structure_android.presentation.screens.home.components.NowShowingMovieItem
 import com.sun.structure_android.presentation.screens.home.components.PopularMovieItem
 import com.sun.structure_android.shared.extension.collectAsEffect
+import kotlinx.coroutines.flow.collectLatest
 
 @Preview(showSystemUi = true)
 @Composable
@@ -53,7 +54,9 @@ fun HomeScreenPreview() {
 @Composable
 fun HomeScreen(viewModel: HomeViewModel, navigator: (BaseDestination) -> Unit) {
 
-    viewModel.navigator.collectAsEffect { destination -> navigator(destination) }
+    viewModel.navigator.collectAsEffect {
+        destination -> navigator(destination)
+    }
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 

@@ -9,6 +9,8 @@ interface MovieRepository {
     suspend fun getNowPlayingMovies(): List<MovieData>
 
     suspend fun getPopularMovies(): List<MovieData>
+
+    suspend fun getMovieDetail(movieId: Int): MovieData?
 }
 
 class MovieRepositoryImpl() : MovieRepository {
@@ -18,12 +20,16 @@ class MovieRepositoryImpl() : MovieRepository {
     }
 
     override suspend fun getNowPlayingMovies(): List<MovieData> {
-        val movies = listOf(MovieData(title = "QQQ"), MovieData(title = "WWW"))
+        val movies = listOf(MovieData(id = 0, title = "QQQ"), MovieData(id = 1,title = "WWW"), MovieData(id = 2,title = "EEE"), MovieData(id = 3,title = "RRR"))
         return movies
     }
 
     override suspend fun getPopularMovies(): List<MovieData> {
-        val movies = listOf(MovieData(title = "QQQ"), MovieData(title = "WWW"), MovieData(title = "EEE"), MovieData(title = "RRR"))
+        val movies = listOf(MovieData(id = 0, title = "QQQ"), MovieData(id = 1,title = "WWW"), MovieData(id = 2,title = "EEE"), MovieData(id = 3,title = "RRR"))
         return movies
+    }
+
+    override suspend fun getMovieDetail(movieId: Int): MovieData? {
+        return MovieData(id = 1,title = "QQQ")
     }
 }
