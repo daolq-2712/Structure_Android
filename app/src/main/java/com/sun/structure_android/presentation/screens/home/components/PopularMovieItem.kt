@@ -19,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -26,24 +27,26 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.sun.structure_android.R
+import com.sun.structure_android.data.model.MovieData
 import com.sun.structure_android.ui.theme.AppColors
 
 @Preview(showBackground = true)
 @Composable
 fun PopularMovieItemPreview() {
-    PopularMovieItem()
+    PopularMovieItem(MovieData())
 }
 
 @Composable
-fun PopularMovieItem() {
+fun PopularMovieItem(movie: MovieData, onMovieClick: ((MovieData) -> Unit)? = null) {
     Row(modifier = Modifier.padding(vertical = 8.dp)) {
         AsyncImage(
             modifier = Modifier
                 .width(85.dp)
                 .height(120.dp)
                 .clip(shape = RoundedCornerShape(8.dp)),
-            model = "https://image.tmdb.org/t/p/original/reEMJA1uzscCbkpeRJeTT2bjqUp.jpg",
-            contentDescription = "Translated description of what the image contains"
+            model = movie.posterUrl,
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
         )
         Spacer(modifier = Modifier.width(16.dp))
         Column(
@@ -52,7 +55,7 @@ fun PopularMovieItem() {
                 .wrapContentHeight()
         ) {
             Text(
-                text = "Spiderman: No way home",
+                text = movie.title.orEmpty(),
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Medium
             )
@@ -66,7 +69,9 @@ fun PopularMovieItem() {
                     modifier = Modifier.size(12.dp), tint = AppColors.LightningYellow
                 )
                 Spacer(modifier = Modifier.width(4.dp))
-                Text(text = "8.5/10 IMDB", fontSize = 12.sp, color = AppColors.DustyGray)
+                Text(
+                    text = movie.ratingFormatted,
+                    fontSize = 12.sp, color = AppColors.DustyGray)
             }
             Spacer(modifier = Modifier.height(8.dp))
             Row {

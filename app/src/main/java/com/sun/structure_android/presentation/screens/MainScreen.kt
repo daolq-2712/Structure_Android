@@ -17,10 +17,13 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.sun.structure_android.data.repository.MovieRepositoryImpl
 import com.sun.structure_android.presentation.screens.navigation.BottomNavScreen
 import com.sun.structure_android.presentation.screens.bookmark.BookmarkScreen
 import com.sun.structure_android.presentation.screens.home.HomeScreen
+import com.sun.structure_android.presentation.screens.home.HomeViewModel
 import com.sun.structure_android.presentation.screens.profile.ProfileScreen
+import com.sun.structure_android.shared.extension.navigate
 
 @Preview
 @Composable
@@ -77,7 +80,9 @@ fun MainScreen() {
             Modifier.padding(innerPadding)
         ) {
             composable(route = BottomNavScreen.Home.route) {
-                HomeScreen()
+                HomeScreen(viewModel = HomeViewModel(MovieRepositoryImpl()),navigator = { destination ->
+                        navController.navigate(destination)
+                },)
             }
             composable(route = BottomNavScreen.Bookmark.route) {
                 BookmarkScreen("Bookmark Screen")

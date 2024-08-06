@@ -16,23 +16,26 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.sun.structure_android.R
+import com.sun.structure_android.data.model.MovieData
 import com.sun.structure_android.ui.theme.AppColors
 
 @Preview(showBackground = true)
 @Composable
 fun NowShowingMovieItemPreview() {
-    NowShowingMovieItem()
+    NowShowingMovieItem(MovieData())
 }
 
 @Composable
-fun NowShowingMovieItem() {
+fun NowShowingMovieItem(movie: MovieData,onMovieClick: ((MovieData) -> Unit)? = null) {
     Column(
         modifier = Modifier
             .width(143.dp)
@@ -48,14 +51,17 @@ fun NowShowingMovieItem() {
                 modifier = Modifier
                     .width(143.dp)
                     .height(212.dp),
-                model = "https://image.tmdb.org/t/p/original/reEMJA1uzscCbkpeRJeTT2bjqUp.jpg",
-                contentDescription = "Translated description of what the image contains"
+                model = movie.posterUrl,
+                contentDescription = null,
+                contentScale = ContentScale.Crop
             )
         }
         Spacer(modifier = Modifier.height(12.dp))
         Text(
-            text = "Spiderman: No way home",
+            text = movie.title.orEmpty(),
             fontSize = 14.sp,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
             fontWeight = FontWeight.Medium
         )
         Spacer(modifier = Modifier.height(8.dp))
@@ -65,7 +71,7 @@ fun NowShowingMovieItem() {
                 modifier = Modifier.size(12.dp), tint = AppColors.LightningYellow
             )
             Spacer(modifier = Modifier.width(4.dp))
-            Text(text = "8.5/10 IMDB", fontSize = 12.sp, color = AppColors.DustyGray)
+            Text(text = "${movie.popularity}/10 IMDB", fontSize = 12.sp, color = AppColors.DustyGray)
         }
     }
 }

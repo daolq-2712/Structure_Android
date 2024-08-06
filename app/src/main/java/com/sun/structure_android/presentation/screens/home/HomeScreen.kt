@@ -24,6 +24,7 @@ import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -35,19 +36,35 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.sun.structure_android.R
+import com.sun.structure_android.data.model.MovieData
+import com.sun.structure_android.navigation.BaseDestination
 import com.sun.structure_android.presentation.screens.home.components.NowShowingMovieItem
 import com.sun.structure_android.presentation.screens.home.components.PopularMovieItem
-import com.sun.structure_android.ui.theme.AppColors
+import com.sun.structure_android.shared.extension.collectAsEffect
 
 @Preview(showSystemUi = true)
 @Composable
 fun HomeScreenPreview() {
-    HomeScreen()
+    HomeScreenContent(HomeUiState())
 }
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(viewModel: HomeViewModel, navigator: (BaseDestination) -> Unit) {
+
+    viewModel.navigator.collectAsEffect { destination -> navigator(destination) }
+
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    HomeScreenContent(uiState = uiState, onMovieClick = viewModel::goToMovieDetail)
+}
+
+@Composable
+private fun HomeScreenContent(
+    uiState: HomeUiState,
+    onMovieClick: ((MovieData) -> Unit)? = null,
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -60,17 +77,24 @@ fun HomeScreen() {
                 .verticalScroll(rememberScrollState())
         ) {
             Spacer(modifier = Modifier.height(8.dp))
-            SectionTitle(title = "Now Showing", onSeeMoreClick = {
-                Log.d("HomeScreen", "NowShowing onSeeMoreClick")
-            })
+            if (uiState.nowPlayingMovies.isNotEmpty()) {
+                SectionTitle(title = "Now Showing", onSeeMoreClick = {
+                    Log.d("HomeScreen", "NowShowing onSeeMoreClick")
+                })
+            }
             Spacer(modifier = Modifier.height(16.dp))
-            ListNowShowingMovies()
+            ListNowShowingMovies(uiState.nowPlayingMovies, onMovieClick = onMovieClick)
             Spacer(modifier = Modifier.height(24.dp))
-            SectionTitle(title = "Popular", onSeeMoreClick = {
-                Log.d("HomeScreen", "Popular onSeeMoreClick")
-            })
+            if (uiState.popularMovies.isNotEmpty()) {
+                SectionTitle(title = "Popular", onSeeMoreClick = {
+                    Log.d("HomeScreen", "Popular onSeeMoreClick")
+                })
+            }
             Spacer(modifier = Modifier.height(16.dp))
-            LisPopularMovies()
+            ListPopularMovies(
+                movies = uiState.popularMovies,
+                onMovieClick = onMovieClick,
+            )
             Spacer(modifier = Modifier.height(24.dp))
         }
     }
@@ -81,7 +105,7 @@ fun TopHeader() {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(24.dp)
+            .padding(8.dp)
             .height(60.dp)
             .wrapContentSize(),
         verticalAlignment = Alignment.CenterVertically,
@@ -140,23 +164,26 @@ fun SectionTitle(title: String, onSeeMoreClick: (() -> Unit)? = null) {
 }
 
 @Composable
-fun ListNowShowingMovies() {
+fun ListNowShowingMovies(movies: List<MovieData>, onMovieClick: ((MovieData) -> Unit)? = null) {
     LazyRow(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         contentPadding = PaddingValues(horizontal = 24.dp)
     ) {
-        items(10) {
-            NowShowingMovieItem()
+        items(movies.size) { index ->
+            NowShowingMovieItem(movie = movies[index], onMovieClick = onMovieClick)
         }
     }
 }
 
 @Composable
-fun LisPopularMovies() {
+fun ListPopularMovies(
+    movies: List<MovieData>,
+    onMovieClick: ((MovieData) -> Unit)? = null
+) {
     Column(modifier = Modifier.padding(horizontal = 24.dp)) {
-        repeat(5) {
-            PopularMovieItem()
+        repeat(movies.size) {index ->
+            PopularMovieItem(movies[index], onMovieClick = onMovieClick)
         }
     }
 }
