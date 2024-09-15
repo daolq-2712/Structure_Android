@@ -8,7 +8,6 @@ object Versions {
     const val appCompat = "1.6.1"
     const val material = "1.8.0"
     const val constraintLayout = "2.1.4"
-    const val coreSplashScreen = "1.0.0"
 
     const val lifecycle = "2.5"
     const val navigation = "2.5.3"
@@ -35,7 +34,7 @@ object Versions {
 object AppConfigs {
     const val application_id = "com.sun.structure_android"
     const val compile_sdk_version = 34
-    const val min_sdk_version = 23
+    const val min_sdk_version = 24
     const val target_sdk_version = 34
     const val version_code = 1
     const val version_name = "1.0"
